@@ -27,7 +27,8 @@ class Vector {
             return new Vector(v);
         } else {
             // will change this later to throw a custom exception
-            return new Vector(0,0,0);
+            System.out.println("Exception");
+            return new Vector(-1);
         }
     }
 
@@ -42,6 +43,21 @@ class Vector {
     public Vector sub(Vector a) {
         // subtracts Vectors by adding Vector this and inverse of Vector a, and returns the resulting sum
         return this.sum(a.scal_mul(-1));
+    }
+
+    public Vector vect_mul(Vector a) {
+        // multiplies two Vectors to create a new Vector
+        // is only defined for 3D vectors
+        if(this.rk() == 3 && a.rk() == 3) {
+            double[] v = new double[3];
+            for(int i = 0; i < 3; i++)
+                v[i] = this.getComponent((i+1)%3)*a.getComponent((i+2)%3) - this.getComponent((i+2)%3)*a.getComponent((i+1)%3);
+            return new Vector(v);
+        } else {
+            // will change this later to throw a custom exception
+            System.out.println("Exception");
+            return new Vector(-2);
+        }
     }
 
 
@@ -73,5 +89,7 @@ class Vector {
         System.out.println(a.scal_mul(0));
         System.out.println(a.sub(new Vector(3, 2, 1)));
         System.out.println(a.sub(a));
+        System.out.println(a.vect_mul(a));
+        System.out.println(a.vect_mul(new Vector(3, 2)));               // issue
     }
 }
