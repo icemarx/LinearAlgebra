@@ -39,6 +39,11 @@ class Vector {
         return new Vector(v);
     }
 
+    public Vector sub(Vector a) {
+        // subtracts Vectors by adding Vector this and inverse of Vector a, and returns the resulting sum
+        return this.sum(a.scal_mul(-1));
+    }
+
 
     
     @Override
@@ -59,11 +64,14 @@ class Vector {
 
     public static void main(String[] args) {
         // for testing purposes
-        System.out.println(new Vector(1, 2, 3));
+        Vector a = new Vector(1, 2, 3);
+        System.out.println(a);
         System.out.println(new Vector(1, 2.3232, -3.5));
-        System.out.println((new Vector(1, 2, 3)).sum(new Vector(-2, -4, -6)));
+        System.out.println(a.sum(new Vector(-2, -4, -6)));
         System.out.println((new Vector(1)).sum(new Vector(1, 2)));      // issue
-        System.out.println((new Vector(1, 2, 3).scal_mul(-1)));
-        System.out.println((new Vector(1, 2, 3).scal_mul(0)));
+        System.out.println(a.scal_mul(-1));
+        System.out.println(a.scal_mul(0));
+        System.out.println(a.sub(new Vector(3, 2, 1)));
+        System.out.println(a.sub(a));
     }
 }
