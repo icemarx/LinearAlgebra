@@ -20,8 +20,8 @@ class Vector {
 
     public Vector sum(Vector a) {
         // adds the Vectors a and returns the Vector sum, if the ranks of Vectors are the same
-        if(a.rk() == this.components.length) {
-            double[] v = new double[this.components.length];
+        if(a.rk() == rk()) {
+            double[] v = new double[rk()];
             for(int i = 0; i < a.rk(); i++) 
                 v[i] = this.getComponent(i) + a.getComponent(i);
             return new Vector(v);
@@ -30,6 +30,15 @@ class Vector {
             return new Vector(0,0,0);
         }
     }
+
+    public Vector scal_mul(double s) {
+        // scales Vector this and returns a new scaled Vector
+        double[] v = new double[rk()];
+        for(int i = 0; i < v.length; i++)
+            v[i] = s*this.components[i];
+        return new Vector(v);
+    }
+
 
     
     @Override
@@ -54,5 +63,7 @@ class Vector {
         System.out.println(new Vector(1, 2.3232, -3.5));
         System.out.println((new Vector(1, 2, 3)).sum(new Vector(-2, -4, -6)));
         System.out.println((new Vector(1)).sum(new Vector(1, 2)));      // issue
+        System.out.println((new Vector(1, 2, 3).scal_mul(-1)));
+        System.out.println((new Vector(1, 2, 3).scal_mul(0)));
     }
 }
