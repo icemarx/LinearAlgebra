@@ -20,13 +20,13 @@ public class Point {
 
     public Vector fromTo(Point b) {
         if(this.getDimension() == b.getDimension()) {
-            Vector vA = new Vector(this.coordinates);
-            Vector vB = new Vector(b.getAllCoordinates());
+            Vector vA = new Vector(this);
+            Vector vB = new Vector(b);
             return vB.sub(vA);
         } else {
             // add custom error here
             System.out.println("Exception");
-            return new Vector(-3);
+            return new Vector(new Point(-3));
         }
     }
 
