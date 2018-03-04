@@ -15,7 +15,12 @@ public class Vector {
     public double getComponent(int i) {
         // returns the i-th component of Vector this
         return this.components[i];
+    }
 
+    public Vector zero() {
+        // returns a zeroth vector, with the same length as the current vector
+        // so that it can be used for addition, etc.s
+        return new Vector(new double[this.components.length]);
     }
 
     public Vector sum(Vector a) {
@@ -91,5 +96,6 @@ public class Vector {
         System.out.println(a.sub(a));
         System.out.println(a.vect_mul(a));
         System.out.println(a.vect_mul(new Vector(3, 2)));               // issue
+        System.out.println(a.zero());
     }
 }

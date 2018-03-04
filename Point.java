@@ -1,16 +1,40 @@
 import java.lang.Math;
 
 public class Point {
-	private double[] coordinates;
-	public Point(double... coordinates) {
-		this.coordinates = coordinates;
-	}
+    private double[] coordinates;
+    public Point(double... coordinates) {
+        this.coordinates = coordinates;
+    }
 
-	@Override
-	public String toString() {
-		String p = "(";
-		for(int i = 0; i < this.coordinates.length; i++) {
-			if(!Double.isInfinite(this.coordinates[i]) && this.coordinates[i] == Math.floor(this.coordinates[i]))
+    public int getDimension() {
+        return this.coordinates.length;
+    }
+
+    public double[] getAllCoordinates() {
+        return this.coordinates;
+    }
+
+    public double getCoordinate(int i) {
+        return this.coordinates[i];
+    }
+
+    public Vector fromTo(Point b) {
+        if(this.getDimension() == b.getDimension()) {
+            Vector vA = new Vector(this.coordinates);
+            Vector vB = new Vector(b.getAllCoordinates());
+            return vB.sub(vA);
+        } else {
+            // add custom error here
+            System.out.println("Exception");
+            return new Vector(-3);
+        }
+    }
+
+    @Override
+    public String toString() {
+        String p = "(";
+        for(int i = 0; i < this.coordinates.length; i++) {
+            if(!Double.isInfinite(this.coordinates[i]) && this.coordinates[i] == Math.floor(this.coordinates[i]))
                 p+=(int)this.coordinates[i];
             else
                 p+=this.coordinates[i];
@@ -18,15 +42,17 @@ public class Point {
             if(i != this.coordinates.length - 1)
                 p+=", ";
             else
-            	p+=")";
-		}
-		return p;
-	}
+                p+=")";
+        }
+        return p;
+    }
 
 
 
-	public static void main(String[] args) {
-		Point point = new Point(1, 2, 3, 4);
-		System.out.println(point);
-	}
+    public static void main(String[] args) {
+        Point point = new Point(1, 2, 3, 4);
+        System.out.println(point);
+        System.out.println(point.fromTo(new Point(1, 1, 1, 1)));
+        System.out.println(point.fromTo(new Point(1, 1, 1)));       // issue
+    }
 }
