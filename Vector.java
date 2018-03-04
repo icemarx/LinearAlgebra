@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.lang.Math;
 
-class Vector {
+public class Vector {
     private double[] components;
     public Vector(double... components) {
         this.components = components;
