@@ -31,6 +31,17 @@ public class Point {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if(other != null && other instanceof Point && getDimension() == ((Point)other).getDimension()) {
+            for(int i = 0; i < getDimension(); i++)
+                if(this.coordinates[i] != ((Point)other).getCoordinate(i));
+            
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public String toString() {
         String p = "(";
         for(int i = 0; i < this.coordinates.length; i++) {
@@ -54,5 +65,7 @@ public class Point {
         System.out.println(point);
         System.out.println(point.fromTo(new Point(1, 1, 1, 1)));
         System.out.println(point.fromTo(new Point(1, 1, 1)));       // issue
+        System.out.println(point.equals(new Point(1,2,3,4)));
+        System.out.println(point.equals(new Point(1)));
     }
 }
