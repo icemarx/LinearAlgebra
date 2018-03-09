@@ -11,8 +11,8 @@ public class Vector {
         this.components = components;
     }
 
-    public int rk() {     // rk stands for rank
-        // returns the rank of the Vector this
+    public int size() {
+        // returns the number of components of Vector this
         return this.components.length;
     }
     public double getComponent(int i) {
@@ -28,9 +28,9 @@ public class Vector {
 
     public Vector sum(Vector a) {
         // adds the Vectors a and returns the Vector sum, if the ranks of Vectors are the same
-        if(a.rk() == rk()) {
-            double[] v = new double[rk()];
-            for(int i = 0; i < a.rk(); i++) 
+        if(a.size() == size()) {
+            double[] v = new double[size()];
+            for(int i = 0; i < a.size(); i++) 
                 v[i] = this.getComponent(i) + a.getComponent(i);
             return new Vector(new Point(v));
         } else {
@@ -42,7 +42,7 @@ public class Vector {
 
     public Vector scal_mul(double s) {
         // scales Vector this and returns a new scaled Vector
-        double[] v = new double[rk()];
+        double[] v = new double[size()];
         for(int i = 0; i < v.length; i++)
             v[i] = s*this.components[i];
         return new Vector(new Point(v));
@@ -56,7 +56,7 @@ public class Vector {
     public Vector vect_mul(Vector a) {
         // multiplies two Vectors to create a new Vector
         // is only defined for 3D vectors
-        if(this.rk() == 3 && a.rk() == 3) {
+        if(this.size() == 3 && a.size() == 3) {
             double[] v = new double[3];
             for(int i = 0; i < 3; i++)
                 v[i] = this.getComponent((i+1)%3)*a.getComponent((i+2)%3) - this.getComponent((i+2)%3)*a.getComponent((i+1)%3);
