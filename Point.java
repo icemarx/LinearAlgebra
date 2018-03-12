@@ -30,6 +30,18 @@ public class Point {
         }
     }
 
+    public Point moveBy(Vector v) {
+        // this method returns a Point, which can be gained by moving the current point by Vector v
+        // the dimensions of the Vector and the Point must be the same
+        if(getDimension() == v.size())
+            return ((new Vector(this)).sum(v)).toPoint();
+        else {
+            // will change this later to throw a custom exception
+            System.out.println("Exception");
+            return new Point(-3);
+        }
+    }
+
     @Override
     public boolean equals(Object other) {
         if(other != null && other instanceof Point && getDimension() == ((Point)other).getDimension()) {
@@ -67,5 +79,7 @@ public class Point {
         System.out.println(point.fromTo(new Point(1, 1, 1)));       // issue
         System.out.println(point.equals(new Point(1,2,3,4)));
         System.out.println(point.equals(new Point(1)));
+        System.out.println(point.moveBy(new Vector(-1, -1, -1, -1)));
+        System.out.println(point.moveBy(new Vector(-1)));          //issue
     }
 }

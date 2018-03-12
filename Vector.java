@@ -19,6 +19,10 @@ public class Vector {
         // returns the i-th component of Vector this
         return this.components[i];
     }
+    public Point toPoint() {
+        // assumes that the vector is based in the center and returns the end point
+        return new Point(this.components);
+    }
 
     public Vector zero() {
         // returns a zeroth vector, with the same length as the current vector
@@ -67,8 +71,6 @@ public class Vector {
             return new Vector(new Point(-2));
         }
     }
-
-
     
     @Override
     public String toString() {
@@ -100,6 +102,6 @@ public class Vector {
         System.out.println(a.vect_mul(a));
         System.out.println(a.vect_mul(new Vector(new Point(3, 2))));               // issue
         System.out.println(a.zero());
-        System.out.println(new Vector(1, 2, 3));
+        System.out.println(a.toPoint());
     }
 }
